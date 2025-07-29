@@ -1,0 +1,16 @@
+.button_wrapper {
+  padding: 10px 12px;
+  background-color: var(--color-gray-100);
+  border: 1px solid var(--color-primary);
+  border-radius: 4px;
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-14);
+}
+
+.button_lg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 93px;
+  height: 37px;
+}

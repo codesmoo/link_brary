@@ -1,0 +1,28 @@
+.container {
+  height: 90px;
+  padding: 20px 200px;
+  display: flex;
+  justify-content: space-between;
+  background-color: wheat;
+}
+
+.logo_link {
+  display: flex;
+  align-items: center;
+}
+
+.profile_wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 28px;
+  margin-left: 20px;
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-14);
+}

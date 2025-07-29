@@ -1,0 +1,24 @@
+.button_wrapper {
+  padding: 16px 20px;
+  background: linear-gradient(to right, #7f5af0, #2cbef9);
+  color: var(--color-white);
+  border-radius: 8px;
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-18);
+}
+
+.button_sm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 128px;
+  height: 53px;
+}
+
+.button_lg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 53px;
+}
