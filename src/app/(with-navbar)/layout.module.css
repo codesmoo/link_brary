@@ -3,3 +3,30 @@
   min-height: 100vh;
   background-color: var(--color-gray-100);
 }
+
+.footer {
+  height: 160px;
+  padding: 40px 150px;
+  background-color: var(--color-black);
+  color: var(--color-gray-footer-font);
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.linkWrapper {
+}
+
+.link {
+  margin: 0 20px;
+
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-16);
+  line-height: 100%;
+  color: #cfcfcf;
+}
+.snsLink {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}

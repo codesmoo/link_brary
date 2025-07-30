@@ -3,7 +3,7 @@
   padding: 20px 200px;
   display: flex;
   justify-content: space-between;
-  background-color: wheat;
+  background-color: var(--color-gray-100);
 }
 
 .logo_link {

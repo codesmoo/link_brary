@@ -1,0 +1,68 @@
+.headSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sectionHeadingWrapper {
+  margin: 40px 0;
+  width: 768px;
+  height: 160px;
+}
+
+.sectionHeading {
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-64);
+  line-height: 80px;
+  letter-spacing: 0px;
+  text-align: center;
+}
+
+.gradientText {
+  background: linear-gradient(90deg, var(--color-primary), var(--color-red));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.mainSection {
+  background-color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 0;
+  gap: 100px 0;
+}
+
+.cardContainer {
+  width: 998px;
+  height: 450px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardTextWrapper {
+  width: 291px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cardHeading {
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-48);
+  text-align: left;
+  line-height: 100%;
+  letter-spacing: -0.3px;
+  vertical-align: middle;
+}
+
+.cardText {
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-16);
+  line-height: 150%;
+  letter-spacing: 0px;
+  color: var(--color-gray-font);
+}

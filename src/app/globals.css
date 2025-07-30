@@ -30,7 +30,12 @@ a {
   --color-gray-300: #e7effb;
   --color-gray-100: #f0f6ff;
 
+  --color-gray-font: #6b6b6b;
+  --color-gray-footer-font: #676767;
+
   /* Font Sizes */
+  --font-size-64: 64px;
+  --font-size-48: 48px;
   --font-size-20: 20px;
   --font-size-18: 18px;
   --font-size-17: 17px;

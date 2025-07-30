@@ -5,7 +5,7 @@ import GradientButton from './gradient-button';
 import OutlinedButton from './outlined-button';
 
 export function GlobalNavBar() {
-  const user_bool = 0;
+  const user_bool = 1;
   return (
     <header>
       <div className={style.container}>
