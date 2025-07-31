@@ -5,7 +5,7 @@ import GradientButton from './gradient-button';
 import OutlinedButton from './outlined-button';
 
 export function GlobalNavBar() {
-  const user_bool = 1;
+  const user_bool = 0;
   return (
     <header>
       <div className={style.container}>
@@ -13,7 +13,7 @@ export function GlobalNavBar() {
           <Image src='/logo.png' alt='logo_image' width={133} height={24} />
         </Link>
         {user_bool ? (
-          <GradientButton href='/login' className='button_sm'>
+          <GradientButton href='/login' className='button_mid'>
             로그인
           </GradientButton>
         ) : (

@@ -1,16 +1,24 @@
 .button_wrapper {
   padding: 10px 12px;
-  background-color: var(--color-gray-100);
+  background-color: transparent;
   border: 1px solid var(--color-primary);
   border-radius: 4px;
   font-weight: var(--font-weight-regular);
   font-size: var(--font-size-14);
-}
 
-.button_lg {
+  width: fit-content;
+  white-space: nowrap;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 93px;
+}
+
+.button_sm {
+  padding: 8px 12px;
+  height: 35px;
+}
+
+.button_lg {
   height: 37px;
 }
