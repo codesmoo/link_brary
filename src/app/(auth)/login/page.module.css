@@ -1,0 +1,55 @@
+.container {
+  width: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.signupText {
+  margin: 20px 0;
+}
+
+.signupLink {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-16);
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.formLabel {
+  font-size: var(--font-size-14);
+}
+
+.formInput {
+  border: 1px solid var(--color-primary);
+  width: 400px;
+  height: 60px;
+  border-radius: 8px;
+  padding: 18px 15px;
+  font-size: var(--font-size-16);
+  outline: none;
+}
+
+.formInput:focus {
+  border: 2px solid var(--color-primary);
+}
+
+.toggle {
+  position: relative;
+}
+
+.toggleImg {
+  position: absolute;
+  right: 12px;
+  top: 0px;
+  cursor: pointer;
+}

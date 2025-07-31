@@ -8,7 +8,7 @@ function Footer() {
   return (
     <footer className={style.footer}>
       <div className={style.companyText}>@codeit - 2025</div>
-      <div className={style.linkWrapper}>
+      <div>
         <Link href='/privacy' className={style.link}>
           Privacy policy
         </Link>
