@@ -1,18 +1,24 @@
+'use client';
+
 import Link from 'next/link';
 import style from './global-nav-bar.module.css';
 import Image from 'next/image';
 import GradientButton from './gradient-button';
 import OutlinedButton from './outlined-button';
 
+import { useAuth } from '@/context/AuthContext';
+
 export function GlobalNavBar() {
-  const user_bool = 0;
+  const { isAuthenticated, logout } = useAuth();
+
+  const user_bool = 1;
   return (
     <header>
       <div className={style.container}>
         <Link href='/' className={style.logo_link}>
           <Image src='/logo.png' alt='logo_image' width={133} height={24} />
         </Link>
-        {user_bool ? (
+        {!isAuthenticated ? (
           <GradientButton href='/login' className='button_mid'>
             로그인
           </GradientButton>
