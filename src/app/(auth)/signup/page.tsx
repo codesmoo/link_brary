@@ -42,7 +42,13 @@ export default function Page() {
       email,
       password,
     });
+
     await login({ email, password });
+
+    //회원가입시 기본 폴더 생성
+    await axios.post('/folders', {
+      name: '기본 폴더',
+    });
     router.push('/links');
   }
 

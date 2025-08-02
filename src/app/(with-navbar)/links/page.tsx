@@ -1,44 +1,47 @@
+'use client';
+
 import style from './page.module.css';
-import GradientButton from '../../../components/gradient-button';
-import OutlinedButton from '../../../components/outlined-button';
+import GradientButton from '@/components/gradient-button';
+import OutlinedButton from '@/components/outlined-button';
+import { useAuth } from '@/context/AuthContext';
 import Image from 'next/image';
 import Link from 'next/link';
-
-function Card() {
-  return (
-    <div className={style.cardWrapper}>
-      <Image
-        src='/car.jpg'
-        alt='car_image'
-        width={340}
-        height={200}
-        style={{ objectFit: 'cover' }}
-      />
-      <span className={style.favoriteStar}>
-        <Image
-          src='/favoriteStar.png'
-          alt='favoriteStar_image'
-          width={34}
-          height={34}
-        />
-      </span>
-
-      <div className={style.cardInfo}>
-        <p className={style.cardTitle}>
-          10 minutes ago
-          <Image src='/kebab.png' alt='kebab_image' width={21} height={17} />
-        </p>
-        <p className={style.cardDescription}>
-          Lorem ipsum dolor sit amet consectetur. Metus amet habitant nunc
-          consequat. Tldkd
-        </p>
-        <p className={style.cardCreatedAt}>2023. 3. 15</p>
-      </div>
-    </div>
-  );
-}
+import { useEffect, useState } from 'react';
+import axios from '@/lib/axios';
+import Card from '@/components/card';
+import { useRouter } from 'next/navigation';
+import { FolderData, LinkData } from '@/types';
 
 export default function Page() {
+  const { user } = useAuth();
+  const router = useRouter();
+  const [folders, setFolders] = useState<FolderData[]>([]);
+  const [links, setLinks] = useState<LinkData[]>([]);
+  const [currentFolder, setCurrentFolder] = useState<FolderData | null>(null);
+
+  async function getMyFolders() {
+    const res = await axios.get('/folders');
+    const data = res.data;
+    setFolders(data);
+
+    // setCurrentFolder(data[0]);
+  }
+
+  async function getMyLinks() {
+    const res = await axios.get('/links');
+    const data = res.data;
+    setLinks(data.list);
+  }
+
+  useEffect(() => {
+    getMyFolders();
+    getMyLinks();
+  }, []);
+
+  if (!user) {
+    router.push('/');
+    return null;
+  }
   return (
     <div className={style.container}>
       <section className={style.inputSection}>
@@ -65,18 +68,15 @@ export default function Page() {
             <OutlinedButton href='/links' className='button_sm'>
               전체
             </OutlinedButton>
-            <OutlinedButton href='/links' className='button_sm'>
-              유튜브
-            </OutlinedButton>
-            <OutlinedButton href='/links' className='button_sm'>
-              코딩 팁
-            </OutlinedButton>
-            <OutlinedButton href='/links' className='button_sm'>
-              채용 사이트
-            </OutlinedButton>
-            <OutlinedButton href='/links' className='button_sm'>
-              유용한 글
-            </OutlinedButton>
+            {folders.map((folder) => (
+              <OutlinedButton
+                key={folder.id}
+                href='/links'
+                className='button_sm'
+              >
+                {folder.name}
+              </OutlinedButton>
+            ))}
           </div>
           <Link href='/' className={style.link}>
             폴더 추가{' '}
@@ -85,32 +85,47 @@ export default function Page() {
         </div>
 
         <div className={style.folderHeading}>
-          <h2 className={style.folderName}>유용한글</h2>
-          <div className={style.folderButtons}>
-            <Link href='/' className={style.folderButton}>
-              <Image src='/share.png' alt='add_image' width={18} height={18} />
-              공유
-            </Link>
-            <Link href='/' className={style.folderButton}>
-              <Image src='/pen.png' alt='add_image' width={18} height={18} />
-              이름 변경
-            </Link>
-            <Link href='/' className={style.folderButton}>
-              <Image src='/delete.png' alt='add_image' width={18} height={18} />
-              삭제
-            </Link>
-          </div>
+          {currentFolder ? (
+            <>
+              <h2 className={style.folderName}>{currentFolder.name}</h2>
+              <div className={style.folderButtons}>
+                <Link href='/' className={style.folderButton}>
+                  <Image
+                    src='/share.png'
+                    alt='add_image'
+                    width={18}
+                    height={18}
+                  />
+                  공유
+                </Link>
+                <Link href='/' className={style.folderButton}>
+                  <Image
+                    src='/pen.png'
+                    alt='add_image'
+                    width={18}
+                    height={18}
+                  />
+                  이름 변경
+                </Link>
+                <Link href='/' className={style.folderButton}>
+                  <Image
+                    src='/delete.png'
+                    alt='add_image'
+                    width={18}
+                    height={18}
+                  />
+                  삭제
+                </Link>
+              </div>
+            </>
+          ) : (
+            <h2 className={style.folderName}>전체</h2>
+          )}
         </div>
         <div className={style.cardGrid}>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          {links.map((link) => (
+            <Card key={link.id} {...link} />
+          ))}
         </div>
         <div className={style.pageButtons}>
           <div>{'<'}</div>

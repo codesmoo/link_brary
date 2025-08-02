@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import axios from '@/lib/axios';
+import { useRouter } from 'next/navigation';
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -13,6 +14,7 @@ interface AuthContextType {
     email: string;
     createdAt: string;
   } | null;
+  isPending: boolean;
   login: ({ email, password }: { email: string; password: string }) => void;
   logout: () => void;
 }
@@ -33,7 +35,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, []);
 
-  async function getMe() {
+  const getMe = async () => {
     setValues((prevValues) => ({
       ...prevValues,
       isPending: true,
@@ -49,7 +51,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         isPending: false,
       }));
     }
-  }
+  };
 
   const login = async ({
     email,
@@ -83,6 +85,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         isAuthenticated: !!token,
         token,
         user: values.user,
+        isPending: values.isPending,
         login,
         logout,
       }}
@@ -93,7 +96,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 };
 
 export const useAuth = () => {
-  const ctx = useContext(AuthContext);
-  if (!ctx) throw new Error('useAuth must be used within AuthProvider');
-  return ctx;
+  const context = useContext(AuthContext);
+
+  if (!context) throw new Error('반드시 AuthProvider 안에서 사용해야함');
+
+  //const router = useRouter();
+  // useEffect(() => {
+  //   if (required && !context?.user && !context?.isPending) {
+  //     router.push('/login');
+  //   }
+  // }, [context?.user, context?.isPending, required, router]);
+
+  return context;
 };

@@ -1,0 +1,44 @@
+.cardWrapper {
+  width: 340px;
+  height: 334px;
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.favoriteStar {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.cardInfo {
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cardTitle {
+  height: 17px;
+  font-size: var(--font-size-13);
+  line-height: 100%;
+  color: #666666;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardDescription {
+  width: 300px;
+  height: 49px;
+  line-height: 24px;
+
+  overflow: hidden;
+}
+
+.cardCreatedAt {
+  font-size: var(--font-size-14);
+  color: #333;
+}
