@@ -9,9 +9,8 @@ import OutlinedButton from './outlined-button';
 import { useAuth } from '@/context/AuthContext';
 
 export function GlobalNavBar() {
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, user } = useAuth();
 
-  const user_bool = 1;
   return (
     <header>
       <div className={style.container}>
@@ -29,12 +28,12 @@ export function GlobalNavBar() {
             </OutlinedButton>
             <div className={style.profile}>
               <Image
-                src='/profile.png'
+                src={user ? user.imageSource : '/profile.png'}
                 alt='logo_image'
                 width={28}
                 height={28}
               />
-              <div>유저명</div>
+              <div>{user ? user.name : '유저명'}</div>
             </div>
           </div>
         )}

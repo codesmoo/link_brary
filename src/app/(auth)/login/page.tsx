@@ -26,21 +26,13 @@ export default function Page() {
     }));
   }
 
-  const handleLogin = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, password } = values;
-    const res = await fetch(
-      'https://linkbrary-api.vercel.app/16-%EC%86%A1%EC%84%B1%ED%95%99/auth/sign-in',
-      {
-        method: 'POST',
-        body: JSON.stringify({ email, password }),
-        headers: { 'Content-Type': 'application/json' },
-      }
-    );
 
-    const data = await res.json();
-    login(data.accessToken); // 토큰 저장
-    router.push('/');
+    const { email, password } = values;
+    await login({ email, password });
+
+    router.push('/links');
   };
 
   return (
@@ -54,7 +46,7 @@ export default function Page() {
           회원 가입하기
         </Link>
       </p>
-      <form className={style.form} onSubmit={handleLogin}>
+      <form className={style.form} onSubmit={handleSubmit}>
         <label htmlFor='email' className={style.formLabel}>
           이메일
         </label>
