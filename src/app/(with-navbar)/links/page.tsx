@@ -351,16 +351,19 @@ export default function Page() {
             <h2 className={style.folderName}>전체</h2>
           )}
         </div>
-        <div className={style.cardGrid}>
-          {links.map((link) => (
-            <Card
-              key={link.id}
-              {...link}
-              onUpdate={() => handleEditClick(link)}
-              onDelete={() => handleDeleteLink(link.id)}
-            />
-          ))}
+        <div className={style.cardGridWrapper}>
+          <div className={style.cardGrid}>
+            {links.map((link) => (
+              <Card
+                key={link.id}
+                {...link}
+                onUpdate={() => handleEditClick(link)}
+                onDelete={() => handleDeleteLink(link.id)}
+              />
+            ))}
+          </div>
         </div>
+
         {isLinkModalOpen && selectedLink && (
           <EditModal
             currentUrl={selectedLink.url}

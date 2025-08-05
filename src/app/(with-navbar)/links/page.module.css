@@ -98,11 +98,13 @@
   color: var(--color-gray-700);
 }
 
-.cardGrid {
+.cardGridWrapper {
   width: 1060px;
   margin: 0 auto;
+}
+
+.cardGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
   gap: 16px;
 }
