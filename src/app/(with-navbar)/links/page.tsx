@@ -13,10 +13,17 @@ import { useRouter } from 'next/navigation';
 import { FolderData, LinkData } from '@/types';
 import Modal from '@/components/modal';
 import EditModal from '@/components/edit-modal';
+import Pagination from '@/components/pagination';
+
+const PAGE_SIZE = 9;
 
 export default function Page() {
   const { user } = useAuth();
   const router = useRouter();
+
+  // page
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   //folder
   const [folders, setFolders] = useState<FolderData[]>([]);
@@ -100,9 +107,6 @@ export default function Page() {
   }
 
   async function deleteFolder() {
-    //   await axios.delete(`/links/${linkId}`);
-    //   setLinks((prevLinks) => prevLinks.filter((link) => link.id !== linkId));
-
     setIsLoading(true);
     try {
       await axios.delete(`/folders/${currentFolder!.id}`);
@@ -138,10 +142,11 @@ export default function Page() {
   }
 
   function handleSelectFolder(folder: FolderData | null) {
+    setPage((prev) => 1);
     if (!folder) {
       setCurrentFolder(null);
       setCurrentFolderName('');
-      getAllLinks();
+      getAllLinks(page);
       return;
     }
     getSelectedFolders(folder);
@@ -153,6 +158,8 @@ export default function Page() {
     setCurrentFolder(folder);
     setCurrentFolderName(folder.name);
     setLinks(data.list);
+    const totalPage = Math.floor(data.totalCount / PAGE_SIZE) + 1;
+    setTotalPages(totalPage);
   }
 
   async function getAllFolders() {
@@ -161,16 +168,18 @@ export default function Page() {
     setFolders(data);
   }
 
-  async function getAllLinks() {
-    const res = await axios.get('/links');
+  async function getAllLinks(page: number) {
+    const res = await axios.get(`/links?page=${page}&pageSize=${PAGE_SIZE}`);
     const data = res.data;
     setLinks(data.list);
+    const totalPage = Math.floor(data.totalCount / PAGE_SIZE) + 1;
+    setTotalPages(totalPage);
   }
 
   useEffect(() => {
     getAllFolders();
-    getAllLinks();
-  }, []);
+    getAllLinks(page);
+  }, [page]);
 
   if (!user) {
     router.push('/');
@@ -360,9 +369,13 @@ export default function Page() {
           />
         )}
         <div className={style.pageButtons}>
-          <div>{'<'}</div>
-          <div>{'1'}</div>
-          <div>{'>'}</div>
+          <div>
+            <Pagination
+              currentPage={page}
+              totalPages={totalPages}
+              onPageChange={setPage}
+            />
+          </div>
         </div>
       </section>
     </div>
