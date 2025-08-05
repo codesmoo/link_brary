@@ -49,7 +49,7 @@ export default function Page() {
     await axios.post('/folders', {
       name: '기본 폴더',
     });
-    router.push('/links');
+    router.push('/login');
   }
 
   return (
@@ -102,7 +102,7 @@ export default function Page() {
           <span className={style.toggle}>
             <Image
               className={style.toggleImg}
-              src='/eyeon.png'
+              src='/eyeoff.png'
               alt='eyeoff_image'
               width={16}
               height={11}
@@ -124,7 +124,7 @@ export default function Page() {
           <span className={style.toggle}>
             <Image
               className={style.toggleImg}
-              src='/eyeon.png'
+              src='/eyeoff.png'
               alt='visible_image'
               width={16}
               height={11}

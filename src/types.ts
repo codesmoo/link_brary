@@ -13,4 +13,14 @@ export interface LinkData {
   imageSource: string;
   description: string;
   createdAt: string;
+  onDelete: () => void;
+  onUpdate: () => void;
+}
+
+export interface ButtonProps {
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  onClick?: () => void;
+  children: React.ReactNode;
+  className?: string;
 }

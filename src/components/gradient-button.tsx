@@ -1,13 +1,6 @@
 import Link from 'next/link';
 import style from './gradient-button.module.css';
-
-interface ButtonProps {
-  href?: string;
-  type?: 'button' | 'submit' | 'reset';
-  onClick?: () => void;
-  children: React.ReactNode;
-  className?: string;
-}
+import { ButtonProps } from '@/types';
 
 export default function Button({
   href,

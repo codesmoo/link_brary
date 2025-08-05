@@ -1,6 +1,10 @@
+'use client';
+
 import Image from 'next/image';
 import style from './card.module.css';
 import { LinkData } from '@/types';
+import DropdownMenu from './dropdown-menu';
+import axios from '@/lib/axios';
 
 export default function Card({
   id,
@@ -10,6 +14,8 @@ export default function Card({
   imageSource,
   description,
   createdAt,
+  onDelete,
+  onUpdate,
 }: LinkData) {
   return (
     <div className={style.cardWrapper}>
@@ -30,10 +36,11 @@ export default function Card({
       </span>
 
       <div className={style.cardInfo}>
-        <p className={style.cardTitle}>
+        <div className={style.cardTitle}>
           {title}
-          <Image src='/kebab.png' alt='kebab_image' width={21} height={17} />
-        </p>
+          <DropdownMenu onDelete={onDelete} onUpdate={onUpdate} />
+        </div>
+
         <p className={style.cardDescription}>{description}</p>
         <p className={style.cardCreatedAt}>{createdAt}</p>
       </div>
